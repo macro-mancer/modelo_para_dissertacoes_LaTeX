@@ -1,0 +1,188 @@
+%!TEX TS-program = pdflatex
+\documentclass[12pt, a4paper, twoside, openright]{icmc}
+
+\usepackage[english,portuguese]{babel} 
+\usepackage[utf8]{inputenc}
+%PACKAGE ADDED IN ORDER TO ENHANCE TYPOGRAPHY AT A VERY SMALL SCALE: 
+%USING DIFFERENT TECHNIQUES, SUCH AS MARGIN KERNING (PROTRUSION), EXTRA KERNING, EXPANSION, TRACKING, AND SPACING
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
+\usepackage{lettrine}
+\usepackage{times}
+\usepackage{setspace}
+\usepackage{xspace}
+\usepackage{float}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{verbatim}
+\usepackage{textfit}
+\usepackage{latexsym}
+\usepackage{multirow}
+\usepackage{alltt}
+\usepackage[T1]{fontenc}
+\usepackage[verbose,left=25mm,right=25mm,top=30mm,bottom=30mm]{geometry}
+\usepackage{ae}
+\usepackage{fancyhdr}
+\usepackage{fancybox}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{subfig}
+\usepackage{anysize}
+\usepackage{setspace}
+\usepackage{lastpage}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{rotating}
+\usepackage{caption}
+\usepackage{placeins}
+\usepackage{url}
+
+\usepackage[authoryear]{natbib}
+
+\usepackage{hyperref}  % GENERATES HYPERLINKS
+\usepackage[chapter]{algorithm}
+\usepackage{algpseudocode}
+
+%PACKAGE ADDED IN ORDER TO SHOW EXIT LOCATION SYMBOLS
+\usepackage{pifont}
+%PACKAGE ADDED IN ORDER TO DRAW TABLES HORIZONTALLY/VERTICALLY
+\usepackage{lscape}
+%PACKAGE ADDED IN ORDER TO SHOW TRIANGLES WITHIN THE MUTATION OPERATORS/MUTANT EXAMPLE
+\usepackage{MnSymbol}
+%PACKAGE ADDED IN ORDER TO SHOW AN ARROW WITHIN THE MUTATION OPERATORS/MUTANT EXAMPLE
+\usepackage{bbding}
+%PACKAGE ADDED IN ORDER TO SHOW AN ARROW WITHIN THE INSTRUMENTATION EXAMPLES (I.E., REPLAY AND RECORD EXECUTION MODES)
+\usepackage{extarrows}
+%PACKAGE ADDED IN ORDER TO DRAW A BOX SURROUNDING A VERBATIM ENVIRONMENT
+\usepackage{fancyvrb}
+%PACKAGE ADDED IN ORDER TO USE LOWER-CASE ROMAN NUMERALS IN ENUMERATE LISTS (E.G., (i), (ii), ...)
+\usepackage{enumerate}
+%PACKAGE ADDED IN ORDER TO INCLUDE PDFs (COVER AND TITLE PAGE)
+\usepackage{pdfpages}
+
+\hypersetup{colorlinks=true,debug=false,
+  linkcolor=black,
+  citecolor=black, 
+  urlcolor=black,
+  pdftitle={Thesis},
+  pdfauthor={Vinicius Durelli},
+  pdfsubject={thesis}}
+
+\pdfcompresslevel=9
+
+\lstset{language=Java}
+%GRAY
+\definecolor{gray}{rgb}{0.45,0.45,0.45}
+\definecolor{dark_gray}{rgb}{0.21,0.22,0.21}
+\lstset{morecomment=[l][\color{gray}]{//},morecomment=[l][\color{dark_gray}\bfseries]{@},
+       morecomment=[s][\color{gray}]{/*}{*/},morecomment=[s][\color{gray}]{/**}{*/}}
+\lstset{basicstyle=\small\ttfamily}
+\lstset{framexbottommargin=3pt}
+\lstset{framextopmargin=3pt}
+\lstset{frameround=fttt}
+\lstset{belowcaptionskip=7.5pt}
+
+%LISTING NUMBER SIZE
+\lstset{numberstyle=\tiny}
+%POSITION
+\lstset{numbers=left}
+\lstset{moredelim=*[s][\itshape]{"}{"}}
+\lstset{moredelim=*[s][\itshape]{'}{'}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\widowpenalty=10000
+\clubpenalty=10000
+\exhyphenpenalty=10000
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%---SPACING---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% spacing between words
+\onehalfspacing
+% spacing between figures, caption and text
+\setlength{\abovecaptionskip}{0.223cm}
+\setlength\textfloatsep{12pt}
+\setlength\floatsep{12pt}  
+% spacing between references
+\setlength{\bibsep}{2.935pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\headheight 17.1pt
+
+\setcounter{secnumdepth} {3}
+\setcounter{tocdepth} {3}
+\definecolor{gray}{rgb}{0.7,0.7,0.7}
+
+\usepackage{xspace}
+
+%*********************   TITLE AND ABSTRACT  ******************************************
+\begin{document}
+	
+%folder containing all images
+\graphicspath{{imagens/}}	
+
+\begingroup
+\pagestyle{empty}
+\thispagestyle{empty}
+\input{cover}
+\input{title}
+
+%\newpage
+%====THIS WHOLE BUNCH OF COMMANDS USED TO BE BEFORE THE ABSTRACT'S ENTRY====
+\pagestyle{plain}
+\thispagestyle{plain}
+\renewcommand{\thepage}{\roman{page}}
+\setcounter{page}{1}
+%===========================================================================
+
+\frontmatter
+%\newpage
+\begin{abstract}
+  \input{abstract}
+\end{abstract}
+
+\begin{resumo}
+	\input{resumo}
+\end{resumo}
+
+%**************************  INDEX ***********************************************
+\microtypesetup{protrusion=false} % disables protrusion locally in the document
+\newpage
+\tableofcontents
+\listoffigures
+\listoftables
+\listofalgorithms
+\lstlistoflistings
+\microtypesetup{protrusion=true} % enables protrusion
+
+% \newpage
+\onehalfspace
+
+\pagestyle{fancy}
+\fancyfoot[C]{\thepage}
+\fancyhead[R]{\leftmark}
+\lhead{}            
+\chead{}
+\let\cite=\citep
+
+%*******************************************************************************
+
+\renewcommand{\thepage}{\arabic{page}}
+\endgroup
+\mainmatter
+\setcounter{page}{1} 
+\let\cite=\citep
+
+%********************  INTRODUCTION   **************************************
+\input{introduction}
+
+%****************************  CONCLUSIONS *********************************
+
+\input{conclusions}
+
+%******************  BIBLIOGRAPHY  *****************************************
+\microtypesetup{protrusion=false,tracking=false,kerning=false,spacing=false}
+\bibliographystyle{icmc}
+\bibliography{references}
+\microtypesetup{protrusion=true,tracking=true,kerning=true,spacing=true}
+%***************************************************************************
+\end{document}
+
